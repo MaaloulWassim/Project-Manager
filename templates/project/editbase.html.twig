@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}GProjects - EditProjects{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/css/ruang-admin.min.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+
+
+<body id="page-top">
+<div class="row justify-content-center ">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card shadow-sm my-5 align-items-center">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-12 r">
+
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h3 class="m-0 font-weight-bold text-primary">Edit Project</h3>
+                        </div>
+
+                        {{ form_start(form) }}
+                        {{ form_row(form.num_project,{'attr':{'class':'form-control'}}) }}
+                        {{ form_row(form.Nom_project,{'attr':{'class':'form-control'}}) }}
+                        {{ form_row(form.localisation,{'attr':{'class':'form-control'}}) }}
+                        <br>
+                        <br>
+
+                        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                        <a class="btn btn-primary" href="{{ path('project_index') }}">back to list</a>
+                        <a class="btn btn-primary" href="{{ path('project_addmember',{'id':project.id,'startp_id':app.user.id}) }}">add members to project</a>
+                        {{ form_end(form) }}
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{{ include('project/_delete_form.html.twig') }}
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+{% block javascripts %}
+    <script src="{{ asset('bundles/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('bundles/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('bundles/js/ruang-admin.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>
+

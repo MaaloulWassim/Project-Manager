@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}GProjects - Login{% endblock %}</title>
+
+    {% block stylesheets %}
+        {# {{ encore_entry_link_tags('app') }} #}
+        <link href="{{ asset('bundles/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/css/ruang-admin.min.css') }}" rel="stylesheet">
+    {% endblock %}
+
+
+</head>
+
+<body class="bg-gradient-login">
+
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.usertype }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <div class="container-login">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-12 col-md-9">
+                <div class="card shadow-sm my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="login-form">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                    </div>
+                                    <form class="user">
+                                        <div class="form-group">
+                                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                                                   class="form-control"
+                                                   autocomplete="email" required autofocus>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="inputPassword"
+                                                   class="form-control" autocomplete="current-password"
+                                                   required>
+
+                                            <input type="hidden" name="_csrf_token"
+                                                   value="{{ csrf_token('authenticate') }}"
+                                            >
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small"
+                                                 style="line-height: 1.5rem;">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" href="{{ path('project_index') }}"
+                                                    class="btn btn-primary btn-block">Login
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="font-weight-bold small" href="{{ path('app_register') }}">Create an
+                                            Account!</a>
+                                    </div>
+                                    <div class="text-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% block javascripts %}
+        <script src="{{ asset('bundles/vendor/jquery/jquery.min.js') }}v"></script>
+        <script src="{{ asset('bundles/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('bundles/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+        <script src="{{ asset('bundles/js/ruang-admin.min.js') }}"></script>
+    {% endblock %}
+</form>
+</body>
+
+</html>

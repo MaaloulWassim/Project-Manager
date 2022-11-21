@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GProjets{% endblock %}
+
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Mailing</h1>
+                <p>messages </p>
+                <p>received :{{ app.user ? app.user.received|length }}</p>
+                <p>sent :{{ app.user ? app.user.sent|length }} </p>
+                <a class="btn btn-primary" data-bs-toggle="offcanvas"
+                   href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                    show my folders
+                </a>
+                <a href="{{ path("send") }}" class="btn btn-primary">Send a message</a>
+
+            </div>
+        </div>
+    </section>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+         aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title" id="offcanvasExampleLabel">My Folders</h2>
+            <button type="button" class="btn-close text-reset"
+                    data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group">
+                <a href="{{ path("messagerie") }}" class="list-group-item
+              list-group-item-action active">Home</a>
+            </div>
+            <div class="list-group">
+                <a href="{{ path("sent") }}" class="list-group-item
+              list-group-item-action">sent messages</a>
+            </div>
+            <div class="list-group">
+                <a href="{{ path("received") }}" class="list-group-item
+              list-group-item-action">received messages</a>
+            </div>
+            <div class="list-group">
+                <a href="{{ path("project_index") }}" class="list-group-item
+              list-group-item-action">back to project</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

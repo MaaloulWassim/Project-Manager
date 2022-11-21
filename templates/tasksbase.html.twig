@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}GProjects - EditProjects{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/css/ruang-admin.min.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+
+
+<body id="page-top">
+<div class="row justify-content-center ">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card shadow-sm my-5 align-items-center">
+            <div class="card-body p-0">
+                <div class="card">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Project tasks</h6>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Tmaker</th>
+                                <th>Project Num</th>
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for task in tasks %}
+                                <tr>
+                                    <td>{{ task.id }}</td>
+                                    <td>{{ task.nom }}</td>
+                                    <td>{{ task.tmaker.email }}</td>
+                                    <td>{{ task.getProjectTasks().getNomProject() }}</td>
+                                    <td>
+                                        <a class="btn btn-primary"
+                                           href="{{ path('tasks_show', {'id': task.id}) }}">show</a>
+                                        <a class="btn btn-primary"
+                                           href="{{ path('tasks_edit', {'id': task.id}) }}">edit</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <hr>
+                        <hr>
+                        <div align="center">
+                            <a class="btn btn-primary" href="{{ path('tasks_new') }}">Create new</a>
+                            <a class="btn btn-primary" href="{{ path('project_index') }}">back to projects</a>
+                        </div>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+{% block javascripts %}
+    <script src="{{ asset('bundles/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('bundles/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('bundles/js/ruang-admin.min.js') }}"></script>
+{% endblock %}
+</body>
+</html>
+
